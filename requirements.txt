@@ -1,5 +1,5 @@
 Flask==2.3.2
-tensorflow==2.11.0
+tensorflow>=2.11.0,<2.16.0
 mtcnn==0.1.1
 numpy==1.24.4
 pillow==10.0.0
