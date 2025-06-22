@@ -1,5 +1,7 @@
-Flask
-tensorflow
-Pillow
-numpy
-tensorflow>=2.10.0,<2.13.0
+Flask==2.3.2
+tensorflow-cpu==2.12.0
+mtcnn==0.1.1
+numpy==1.24.4
+pillow==10.0.0
+opencv-python==4.7.0.72
+gunicorn==20.1.0
