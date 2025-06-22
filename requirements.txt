@@ -2,3 +2,4 @@ Flask
 tensorflow
 Pillow
 numpy
+tensorflow==2.12.0
