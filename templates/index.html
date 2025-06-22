@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DeepScan - Système CNN de Détection de Deepfakes</title>
+  <link rel="stylesheet" href="static/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Modal Image CSS -->
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      padding-top: 5%;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 30px;
+      right: 35px;
+      color: #fff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+      color: #bbb;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background particles canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            Détection de
+            <span class="gradient-text">Deepfakes</span>
+            <br />
+            <span class="hero-subtitle">Système CNN</span>
+          </h1>
+          <p class="hero-description">
+            Système avancé de détection de deepfakes basé sur CNN. Téléchargez des images ou des vidéos pour détecter les médias manipulés et vous protéger contre la désinformation.
+          </p>
+
+          <div class="hero-info">
+            <div class="info-item">
+              <i class="fas fa-exclamation-triangle text-yellow"></i>
+              <span>Prend en charge MP4, AVI, JPEG, PNG</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-shield-alt text-green"></i>
+              <span>Taille maximale du fichier : 50 Mo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-upload">
+          <div class="upload-card">
+            <div class="upload-area" id="upload-area">
+              <input type="file" id="file-input" accept="image/*,video/*" hidden />
+              <div class="upload-content" id="upload-content">
+                <i class="fas fa-upload upload-icon"></i>
+                <p class="upload-title">Déposez votre fichier média ici</p>
+                <p class="upload-subtitle">ou cliquez pour parcourir</p>
+                <p class="upload-info">Prend en charge MP4, AVI, JPEG, PNG (Max 50 Mo)</p>
+              </div>
+            </div>
+
+            <button class="btn btn-primary btn-full" id="analyze-btn" style="display: none;">
+              <i class="fas fa-shield-alt"></i>
+              Analyser pour les deepfakes
+            </button>
+
+            <div class="analysis-loading" id="analysis-loading" style="display: none;">
+              <div class="loading-spinner"></div>
+              <p class="loading-title">Analyse du média...</p>
+              <p class="loading-subtitle">Traitement des motifs faciaux par le modèle CNN</p>
+            </div>
+
+            <div class="analysis-result" id="analysis-result" style="display: none;">
+              <div class="result-content">
+                <div class="result-header">
+                  <i class="result-icon"></i>
+                  <div class="result-info">
+                    <p class="result-title"></p>
+                    <p class="result-confidence"></p>
+                  </div>
+                </div>
+                <p class="result-explanation"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detection Visualization -->
+    <div class="detection-animation">
+      <div class="detection-glow"></div>
+      <div class="detection-ring"></div>
+      <div class="detection-center">
+        <i class="fas fa-shield-alt detection-icon"></i>
+        <i class="fas fa-eye detection-eye"></i>
+        <i class="fas fa-exclamation-triangle detection-warning"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal for Image Preview -->
+  <div id="image-modal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modal-img">
+  </div>
+
+  <script src="static/script.js"></script>
+</body>
+</html>
